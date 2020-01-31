@@ -1,8 +1,15 @@
 class CommentsController < ApplicationController
 
   def create
-    comment = Comment.create(comment_params)
-    redirect_to comment.post
+    comment = Comment.new(params.require(:comment).permit(:content, :post_id, :user_id))
+    if !comment.user_id
+    	comment.update(comment_params)
+    end
+    if comment.save
+    	redirect_to post_path(comment.post)
+    else
+    	render :'posts/show'
+    end
   end
 
   private

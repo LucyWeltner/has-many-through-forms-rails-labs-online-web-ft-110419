@@ -1,0 +1,12 @@
+<h1> <%= @category.name %></h1>
+
+
+
+<% if @category.posts.length != 0 %>
+	<h3>Posts In This Category:</h3>
+	<ol>
+		<% @category.posts.uniq.each do |post| %>
+			<li><p><%= link_to(post.title, post_path(post)) %></p></li>
+		<% end %>
+	</ol>
+<% end %>

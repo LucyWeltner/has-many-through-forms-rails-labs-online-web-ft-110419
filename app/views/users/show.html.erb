@@ -1,1 +1,8 @@
+<h1> <%= @user.username %></h1>
 
+<h3> Commented Posts: </h3>
+<ol>
+	<% @user.posts.uniq.each do |post| %>
+		<li><p><%= link_to(post.title, post_path(post.id)) %></p></li>
+	<% end %>
+</ol>
